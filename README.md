@@ -1,13 +1,13 @@
-### An online version of the classic social deductiong game Werewolves using Node. So you can play the game via a conferencing tool like zoom.
+An online version of the classic social deduction game Werewolves using Node. Built to support playing the game via a conferencing tool like zoom.
 
-#### Build
+## Build
 
-- npm install
+npm install
 
-#### Test
+## Test
 
-- npm test
+npm test
 
-#### Run
+## Run
 
-- npm start
+npm start
