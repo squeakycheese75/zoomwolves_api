@@ -2,19 +2,22 @@ const express = require('express')
 
 const router = express.Router()
 
+const { uuid } = require('uuidv4')
+
 router
   .route('/:id')
   .get((req, res) => {
     res.send('GET received.')
   })
   .post((req, res) => {
-    const playerInfo = req.body
+    // register play to game
+    // const playerInfo = req.body
     const gameId = req.params.id
-    console.log('POST received')
-    console.log(playerInfo)
-    // const body = req.body
-    // const zoomId = body.zoomId
-    const resval = `Welcome brave ${playerInfo.name}, you are registered to game : ${gameId}.`
+
+    console.log(req.body)
+
+    const id = uuid()
+    const resval = { gameId, playerId: id, status: 'success' }
     res.setHeader('Content-Type', 'application/json')
     res.send(resval)
   })

@@ -11,8 +11,12 @@ function normalizeName(name) {
 router
   .route('/')
   .get((req, res) => {
+    const id = uuid()
+    // const resval = `Welcome brave ${keyName}, your game id is: ${id}.   Pass the link onto your players /api/player/${id}   You are now the zoomwolves master.`
+    const resval = { id }
+    console.log('GET client received')
     res.setHeader('Content-Type', 'application/json')
-    res.send('GET received.')
+    res.send(resval)
   })
   .post((req, res) => {
     // console.log('req body is', req.body)
@@ -20,7 +24,8 @@ router
     const keyName = normalizeName(clientInfo.name)
 
     const id = uuid()
-    const resval = `Welcome brave ${keyName}, your game id is: ${id}.  Guard it well!  You are now the zoomwolf master.`
+    // const resval = `Welcome brave ${keyName}, your game id is: ${id}.   Pass the link onto your players /api/player/${id}   You are now the zoomwolves master.`
+    const resval = { id, keyName }
     res.setHeader('Content-Type', 'application/json')
     res.send(resval)
   })

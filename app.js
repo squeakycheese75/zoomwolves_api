@@ -1,12 +1,14 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 5000
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const playerRoute = require('./api/controllers/player')
 const clientRoute = require('./api/controllers/client')
 const characterRoute = require('./api/controllers/character')
 
+app.use(cors())
 app.use('/', express.static(__dirname))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json()) // support json encoded bodies
