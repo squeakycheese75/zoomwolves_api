@@ -4,9 +4,9 @@ const port = 5000
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
-const playerRoute = require('./api/controllers/player')
-const clientRoute = require('./api/controllers/client')
-const characterRoute = require('./api/controllers/character')
+const playerRoute = require('./api/controllers/players')
+const clientRoute = require('./api/controllers/clients')
+const characterRoute = require('./api/controllers/characters')
 
 app.use(cors())
 app.use('/', express.static(__dirname))
@@ -18,9 +18,9 @@ app.get('/', (req, res) => {
     'Welcome adventurer!  Are you sure you wish to proceeed.   There are dark things lurking in the shadows......'
   )
 })
-app.use('/api/player', playerRoute)
-app.use('/api/client', clientRoute)
-app.use('/api/character', characterRoute)
+app.use('/api/players', playerRoute)
+app.use('/api/clients', clientRoute)
+app.use('/api/characters', characterRoute)
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
