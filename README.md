@@ -16,8 +16,10 @@ npm start
 
 # Endpoints
 
-| **Verb** | **Endpoint**    | **Description**                                       |
-| -------- | --------------- | ----------------------------------------------------- |
-| POST     | /api/client     | Registers a new client application on the game server |
-| POST     | /api/player     | Create a new game                                     |
-| POST     | /api/player/:id | Join an existing game                                 |
+| **Verb** | **Endpoint**         | **Description**                                |
+| -------- | -------------------- | ---------------------------------------------- |
+| GET      | /api/games           | Retrieves list of games.                       |
+| POST     | /api/games           | Registers a new game on the server             |
+| GET      | /api/games/:id       | Find a single game using the id                |
+| GET      | /api/players/:id     | Find a player using their id                   |
+| POST     | /api/players/:gameid | Registers a player to a game using the game id |
