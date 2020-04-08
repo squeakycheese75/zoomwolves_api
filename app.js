@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const playerRoute = require('./api/controllers/players')
-const clientRoute = require('./api/controllers/clients')
+const gamesRoute = require('./api/controllers/games')
 const characterRoute = require('./api/controllers/characters')
 
 app.use(cors())
@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
   )
 })
 app.use('/api/players', playerRoute)
-app.use('/api/clients', clientRoute)
+app.use('/api/games', gamesRoute)
 app.use('/api/characters', characterRoute)
 
 app.listen(port, () => {
