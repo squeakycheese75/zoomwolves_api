@@ -13,12 +13,8 @@ var registeredgames = []
 router
   .route('/')
   .get((req, res) => {
-    // const id = uuid()
-    // const resval = `Welcome brave ${keyName}, your game id is: ${id}.   Pass the link onto your players /api/player/${id}   You are now the zoomwolves master.`
-    const resval = { registeredgames }
-    // console.log('GET client received')
     res.setHeader('Content-Type', 'application/json')
-    res.send(resval)
+    res.send(registeredgames)
   })
   .post((req, res) => {
     // console.log('req body is', req.body)
@@ -28,18 +24,16 @@ router
     const id = uuid()
     // const resval = `Welcome brave ${keyName}, your game id is: ${id}.   Pass the link onto your players /api/player/${id}   You are now the zoomwolves master.`
     const resval = { id, keyName }
-    registeredgames.push({ id, owner: keyName, status: 'open' })
+    registeredgames.push({ id, owner: keyName, status: 'open', players: [] })
     res.setHeader('Content-Type', 'application/json')
     res.send(resval)
   })
 
-router.route('/:id/close').get((req, res) => {
+router.route('/:id').get((req, res) => {
   // Get individual player details registered to gameId
   const game = registeredgames.find((q) => q.id === req.params.id)
-  game.status = 'closed'
-  registeredgames.push(game)
   res.setHeader('Content-Type', 'application/json')
-  res.send('Game closed')
+  res.send(game)
 })
 
 module.exports = router
