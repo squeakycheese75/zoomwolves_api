@@ -19,9 +19,9 @@ module.exports = function (monitor) {
     castCharacter()
       .then((data) => {
         // Only return a response when we detect the
-        gameMonitor.on('newGameStarted', (id) => {
+        gameMonitor.on('gameClosed', (id) => {
           if (id === req.param.id) {
-            console.log('newGameStarted detected', id)
+            console.log('gameClosed detected', id)
             res.send(data)
           }
         })

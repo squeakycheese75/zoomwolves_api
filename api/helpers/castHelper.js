@@ -23,7 +23,7 @@ function castPlayers(players) {
   fillRole(playerList, cast, 'werewolf')
   fillRole(playerList, cast, 'werewolf')
   fillRole(playerList, cast, 'seer')
-  fillRole(playerList, cast, 'doctor')
+  fillRole(playerList, cast, 'witch')
 
   // The rest are villagers
   for (let i = 0; i <= playerList.length; i += 1) {
