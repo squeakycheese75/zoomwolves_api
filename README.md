@@ -35,6 +35,7 @@ npm start
 | POST     | /api/games           | Registers a new game on the server             |
 | GET      | /api/games/:id       | Find a single game using the id                |
 | POST     | /api/players/:gameid | Registers a player to a game using the game id |
+| POST     | /api/games/:id/close | Close the game and cast the characters.        |
 
 ## Dependancies
 
