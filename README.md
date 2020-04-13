@@ -2,6 +2,11 @@
 
 An online version of the classic social deduction game Werewolves using Node. Built to support playing the game via a conferencing tool like zoom.
 
+## Add a .env file
+
+DB_ENDPOINT=mongodb://localhost:27017/zoomwolves
+DB_COLLECTION=Games
+
 ## Build
 
 npm install
