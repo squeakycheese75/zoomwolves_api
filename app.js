@@ -1,11 +1,14 @@
 const express = require('express')
-const app = express()
-const port = 5000
+
+require('dotenv').config()
+
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const GameMonitor = require('./GameMonitor')
 
 const gameMonitor = new GameMonitor()
+const app = express()
+const port = 5000
 
 const playerRoute = require('./api/controllers/players')
 const gamesRoute = require('./api/controllers/games')(gameMonitor)
