@@ -1,5 +1,5 @@
 const express = require('express')
-
+// var db = require('../data/db')
 const router = express.Router()
 
 const { uuid } = require('uuidv4')
@@ -10,6 +10,7 @@ router.route('/:id').post((req, res) => {
   const clientInfo = req.body
   const playerId = uuid()
   // const keyName = normalizeName(clientInfo.name)
+  // db.registeredgames.
   console.log('name is: ', clientInfo.name)
   console.log('gameId is: ', gameId)
   console.log('playerId is: ', playerId)
