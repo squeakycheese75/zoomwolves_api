@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.DB_ENSPOINT)
-// 'mongodb://localhost:27017/zoomwolves'
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 
 const playerSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -15,6 +17,6 @@ const gameSchema = new mongoose.Schema({
   created_at: { type: Date, default: Date.now },
 })
 
-var Game = mongoose.model(process.env.DB_COLLECTION, gameSchema)
+var Game = mongoose.model(process.env.MONGO_COLLECTION, gameSchema)
 
 module.exports = Game

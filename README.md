@@ -4,20 +4,28 @@ An online version of the classic social deduction game Werewolves using Node. Bu
 
 ## Add a .env file
 
-DB_ENDPOINT=mongodb://localhost:27017/zoomwolves
-DB_COLLECTION=Games
+```
+MONGO_URI=mongodb://localhost:27017/zoomwolves
+MONGO_COLLECTION=Games
+```
 
 ## Build
 
+```
 npm install
+```
 
 ## Test
 
+```
 npm test
+```
 
 ## Run
 
+```
 npm start
+```
 
 # Endpoints
 
@@ -26,5 +34,8 @@ npm start
 | GET      | /api/games           | Retrieves list of games.                       |
 | POST     | /api/games           | Registers a new game on the server             |
 | GET      | /api/games/:id       | Find a single game using the id                |
-| GET      | /api/players/:id     | Find a player using their id                   |
 | POST     | /api/players/:gameid | Registers a player to a game using the game id |
+
+## Dependancies
+
+[MongoDb](https://docs.mongodb.com/manual/installation/)
