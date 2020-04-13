@@ -3,10 +3,13 @@ const app = express()
 const port = 5000
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const GameMonitor = require('./GameMonitor')
+
+const gameMonitor = new GameMonitor()
 
 const playerRoute = require('./api/controllers/players')
-const gamesRoute = require('./api/controllers/games')
-const characterRoute = require('./api/controllers/characters')
+const gamesRoute = require('./api/controllers/games')(gameMonitor)
+const characterRoute = require('./api/controllers/characters')(gameMonitor)
 
 app.use(cors())
 app.use('/', express.static(__dirname))
