@@ -11,15 +11,21 @@ MONGO_COLLECTION=Games
 
 ## Build
 
+```
 npm install
+```
 
 ## Test
 
+```
 npm test
+```
 
 ## Run
 
+```
 npm start
+```
 
 # Endpoints
 
@@ -29,3 +35,7 @@ npm start
 | POST     | /api/games           | Registers a new game on the server             |
 | GET      | /api/games/:id       | Find a single game using the id                |
 | POST     | /api/players/:gameid | Registers a player to a game using the game id |
+
+## Dependancies
+
+[MongoDb](https://docs.mongodb.com/manual/installation/)
