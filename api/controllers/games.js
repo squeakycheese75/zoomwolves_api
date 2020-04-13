@@ -55,14 +55,35 @@ module.exports = function (monitor) {
     })
   })
 
-  // router.route('/:id/close').get((req, res) => {
-  //   // Get individual player details registered to gameId
-  //   const game = Game.registeredgames.findById(req.params.id)
-  //   const p = castPlayers(game.players)
-  //   gameMonitor.emit('gameClosed', req.params.id)
-  //   res.setHeader('Content-Type', 'application/json')
-  //   res.send(game)
-  // })
+  router.route('/:id/close').post((req, res) => {
+    // Get individual player details registered to gameId
+    console.log('In close function')
+    Game.findById(req.params.id, (err, game) => {
+      if (err) throw err
+      console.log('Found game server')
+      // if (game.players.length > 7) {
+      const cast = castPlayers(game.players)
+      console.log('cast is ', cast)
+      if (cast.status === 'passed') {
+        game.players = cast.players
+        // game.players.push({  })
+        game.save((err) => {
+          if (err) throw err
+
+          console.log('Cast characters')
+          gameMonitor.emit('gameClosed', req.params.id)
+          res.setHeader('Content-Type', 'application/json')
+          res.send(game)
+        })
+      }
+      // }
+    })
+    // const game = Game.registeredgames.findById(req.params.id)
+    // const p = castPlayers(game.players)
+    // gameMonitor.emit('gameClosed', req.params.id)
+    // res.setHeader('Content-Type', 'application/json')
+    // res.send(game)
+  })
 
   return router
 }

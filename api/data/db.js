@@ -7,6 +7,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 const playerSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  role: { type: String, default: '' },
 })
 
 const gameSchema = new mongoose.Schema({
