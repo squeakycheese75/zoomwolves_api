@@ -3,14 +3,14 @@ const castHelper = require('../api/helpers/castHelper.js')
 
 const emptyList = []
 const playersList = [
-  { id: 'jamie' },
-  { id: 'bob' },
-  { id: 'andrea' },
-  { id: 'sue' },
-  { id: 'rita' },
-  { id: 'sam' },
-  { id: 'alan' },
-  { id: 'derek' },
+  { id: '5e94c8d86224539c575136f0', name: 'jamie' },
+  { id: '5e94c8e2302cb3d712fddfe1', name: 'bob' },
+  { id: '5e94c8eae7e6c985c3b5d5e3', name: 'andrea' },
+  { id: '5e94c8f286d1d0f5ab6ff88b', name: 'sue' },
+  { id: '5e94c8f998c27255fd72af41', name: 'rita' },
+  { id: '5e94c902e4b2fd7b8a1cf882', name: 'sam' },
+  { id: '5e94c90c2087024448b9ebe5', name: 'alan' },
+  { id: '5e94c91404337da8bde0f931', name: 'derek' },
 ]
 
 it('Test we return a failed result if there are not enough players.', () => {
@@ -39,10 +39,10 @@ it('Test that exactly 1 player is cast in the seer role.', () => {
   assert.equal(castFiltered.length, 1)
 })
 
-it('Test that exactly 1 player is cast in the doctor role.', () => {
+it('Test that exactly 1 player is cast in the witch role.', () => {
   const resval = castHelper.castPlayers(playersList)
   const castFiltered = resval.cast.filter((el) => {
-    return el.role === 'doctor'
+    return el.role === 'witch'
   })
   assert.equal(castFiltered.length, 1)
 })

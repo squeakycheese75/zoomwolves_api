@@ -1,32 +1,27 @@
 const express = require('express')
-const { uuid } = require('uuidv4')
-const mongoose = require('mongoose')
+
 const router = express.Router()
 
 const { castPlayers } = require('../helpers/castHelper')
 
-// var db = require('../data/db')
-var Game = require('../data/db')
+const Game = require('../data/db')
 
 function normalizeName(name) {
   return name.replace(/[ ]/g, '_').toLowerCase()
 }
 
-// let registeredgames = []
-
-module.exports = function (monitor) {
+module.exports = (monitor) => {
   const gameMonitor = monitor
 
   gameMonitor.on('newGameStarted', (id) => {
+    // eslint-disable-next-line no-console
     console.log('newGameStarted detected', id)
   })
 
   router.route('/').post((req, res) => {
-    // console.log('here')
     const clientInfo = req.body
     const keyName = normalizeName(clientInfo.name)
 
-    // const id = uuid()
     const newGame = Game({
       owner: keyName,
       status: 'open',
@@ -34,9 +29,10 @@ module.exports = function (monitor) {
     })
     newGame.save((error) => {
       if (error) throw error
+      // eslint-disable-next-line no-console
       console.info('new Game created')
     })
-    // console.log(newGame)
+
     // eslint-disable-next-line no-underscore-dangle
     const newGameId = newGame._id
     const resval = { id: newGameId, keyName }
@@ -56,33 +52,30 @@ module.exports = function (monitor) {
   })
 
   router.route('/:id/close').post((req, res) => {
-    // Get individual player details registered to gameId
-    console.log('In close function')
     Game.findById(req.params.id, (err, game) => {
       if (err) throw err
-      console.log('Found game server')
+      // console.log('Found game server')
       // if (game.players.length > 7) {
       const cast = castPlayers(game.players)
-      console.log('cast is ', cast)
-      if (cast.status === 'passed') {
-        game.players = cast.players
-        // game.players.push({  })
-        game.save((err) => {
-          if (err) throw err
 
-          console.log('Cast characters')
-          gameMonitor.emit('gameClosed', req.params.id)
-          res.setHeader('Content-Type', 'application/json')
-          res.send(game)
-        })
+      if (cast.status === 'passed') {
+        Game.findByIdAndUpdate(
+          req.params.id,
+          { players: cast.cast },
+          { new: true },
+          (err, result) => {
+            if (err) {
+              res.send(err)
+            } else {
+              // console.log('back from update ', result)
+              gameMonitor.emit('gameClosed', req.params.id)
+              res.setHeader('Content-Type', 'application/json')
+              res.send(result)
+            }
+          }
+        )
       }
-      // }
     })
-    // const game = Game.registeredgames.findById(req.params.id)
-    // const p = castPlayers(game.players)
-    // gameMonitor.emit('gameClosed', req.params.id)
-    // res.setHeader('Content-Type', 'application/json')
-    // res.send(game)
   })
 
   return router

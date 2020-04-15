@@ -10,7 +10,6 @@ module.exports = function (monitor) {
   async function castCharacter() {
     const rawData = await fsPromises.readFile(dataFile, 'utf8')
     const cast = JSON.parse(rawData)
-    //
     const character = cast[Math.floor(Math.random() * cast.length)]
     return character
   }
