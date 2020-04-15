@@ -6,7 +6,7 @@ An online version of the classic social deduction game Werewolves using Node. Bu
 
 ```
 MONGO_URI=mongodb://localhost:27017/zoomwolves
-MONGO_COLLECTION=Games
+MONGO_COLLECTION=games
 ```
 
 ## Build

@@ -5,7 +5,8 @@ function randomlypickaplayer(players) {
 
 function fillRole(players, cast, role) {
   const player = randomlypickaplayer(players)
-  cast.push({ id: player, role })
+  player.role = role
+  cast.push(player)
   const index = players.indexOf(player)
   if (index > -1) {
     players.splice(index, 1)
@@ -13,21 +14,22 @@ function fillRole(players, cast, role) {
 }
 
 function castPlayers(players) {
-  if (players.length < 7)
-    return {
-      status: 'failed',
-    }
-
+  // if (players.length < 7)
+  //   return {
+  //     status: 'failed',
+  //   }
+  // console.log('players', players)
   const cast = []
-  const playerList = players.map((a) => a.id)
-  fillRole(playerList, cast, 'werewolf')
-  fillRole(playerList, cast, 'werewolf')
-  fillRole(playerList, cast, 'seer')
-  fillRole(playerList, cast, 'witch')
+  const clonePlayers = [...players]
+  // console.log('calling fillRole')
+  fillRole(clonePlayers, cast, 'werewolf')
+  // fillRole(clonePlayers, cast, 'werewolf')
+  // fillRole(clonePlayers, cast, 'seer')
+  // fillRole(clonePlayers, cast, 'witch')
 
   // The rest are villagers
-  for (let i = 0; i <= playerList.length; i += 1) {
-    fillRole(playerList, cast, 'villager')
+  for (let i = 0; i <= clonePlayers.length; i += 1) {
+    fillRole(clonePlayers, cast, 'villager')
   }
 
   const resval = {
