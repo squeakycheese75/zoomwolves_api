@@ -4,25 +4,22 @@ const router = express.Router()
 
 const Game = require('../data/db')
 
-module.exports = function (monitor) {
+module.exports = (monitor) => {
   const gameMonitor = monitor
 
-  router.route('/:gameId/:playerId').get((req, res) => {
-    // castCharacter()
-    //   .then((data) => {
-    // Only return a response when we detect the
-    console.log(req.param.gameId)
-    console.log(req.param.playerId)
+  router.route('/:gameId/player/:playerId').get((req, res) => {
+    const { gameId, playerId } = req.params
     gameMonitor.on('gameClosed', (id) => {
-      if (id === req.param.gameId) {
-        Game.findById(req.params.gameId, (err, game) => {
+      if (id === gameId) {
+        Game.findById(gameId, (err, game) => {
           if (err) throw err
-          console.log('gameClosed detected', id)
-          res.send(game.players)
+          // console.log('gameClosed detected', id)
+          const resval = game.players.find((player) => player.id === playerId)
+          res.send({ role: resval.role, desc: 'some desc' })
         })
       }
     })
-    // .catch((error) => res.status(500).send(error))
+    // res.status(500).send('not working')
   })
 
   return router
