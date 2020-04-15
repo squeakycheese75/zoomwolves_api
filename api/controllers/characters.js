@@ -1,31 +1,28 @@
 const express = require('express')
 
 const router = express.Router()
-const dataFile = './api/data/characters.json'
-const fsPromises = require('fs').promises
+
+const Game = require('../data/db')
 
 module.exports = function (monitor) {
   const gameMonitor = monitor
 
-  async function castCharacter() {
-    const rawData = await fsPromises.readFile(dataFile, 'utf8')
-    const cast = JSON.parse(rawData)
-    const character = cast[Math.floor(Math.random() * cast.length)]
-    return character
-  }
-
-  router.route('/:id').get((req, res) => {
-    castCharacter()
-      .then((data) => {
-        // Only return a response when we detect the
-        gameMonitor.on('gameClosed', (id) => {
-          if (id === req.param.id) {
-            console.log('gameClosed detected', id)
-            res.send(data)
-          }
+  router.route('/:gameId/:playerId').get((req, res) => {
+    // castCharacter()
+    //   .then((data) => {
+    // Only return a response when we detect the
+    console.log(req.param.gameId)
+    console.log(req.param.playerId)
+    gameMonitor.on('gameClosed', (id) => {
+      if (id === req.param.gameId) {
+        Game.findById(req.params.gameId, (err, game) => {
+          if (err) throw err
+          console.log('gameClosed detected', id)
+          res.send(game.players)
         })
-      })
-      .catch((error) => res.status(500).send(error))
+      }
+    })
+    // .catch((error) => res.status(500).send(error))
   })
 
   return router

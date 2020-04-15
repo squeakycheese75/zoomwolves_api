@@ -16,8 +16,15 @@ router.route('/:id').post((req, res) => {
       if (error) throw error
 
       console.log('Added new player', clientInfo.name, ' to game')
+
+      const player = game.players.find((item) => {
+        return item.name === clientInfo.name
+      })
+      // eslint-disable-next-line no-underscore-dangle
+      const playerId = player._id
+      const resval = { id: playerId }
       res.setHeader('Content-Type', 'application/json')
-      res.send(game)
+      res.send(resval)
     })
   })
 })
