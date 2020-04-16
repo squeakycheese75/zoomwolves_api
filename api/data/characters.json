@@ -1,7 +1,22 @@
 [
-  { "role": "Villager", "desc": "To defend your village." },
-  { "role": "Werewolf", "desc": "To take over the village." },
-  { "role": "Seer", "desc": "Find the werewolves." },
-  { "role": "Doctor", "desc": "Heal the innocent." },
-  { "role": "Witch", "desc": "Heal once, Poison once." }
+  {
+    "role": "Villager",
+    "desc": "To defend your village."
+  },
+  {
+    "role": "Werewolf",
+    "desc": "To take over the village."
+  },
+  {
+    "role": "Seer",
+    "desc": "To find the werewolves."
+  },
+  {
+    "role": "Doctor",
+    "desc": "Heal the innocent."
+  },
+  {
+    "role": "Witch",
+    "desc": "Heal once, Poison once."
+  }
 ]
