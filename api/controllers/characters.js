@@ -13,13 +13,11 @@ module.exports = (monitor) => {
       if (id === gameId) {
         Game.findById(gameId, (err, game) => {
           if (err) throw err
-          // console.log('gameClosed detected', id)
           const resval = game.players.find((player) => player.id === playerId)
           res.send({ role: resval.role, desc: 'some desc' })
         })
       }
     })
-    // res.status(500).send('not working')
   })
 
   return router
