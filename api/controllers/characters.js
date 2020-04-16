@@ -1,17 +1,17 @@
-const express = require('express')
+import { Router } from 'express'
+import { findById } from '../data/db'
+import loadCharacters from '../helpers/charactersHelpers'
 
-const router = express.Router()
+const router = Router()
 
-const Game = require('../data/db')
-const { loadCharacters } = require('../helpers/charactersHelpers');
-
-module.exports = (monitor) => {
+export default (monitor) => {
   const gameMonitor = monitor
 
   router.route('/').get((req, res) => {
-    loadCharacters().then((result) => {
-      res.send(result)
-    })
+    loadCharacters()
+      .then((result) => {
+        res.send(result)
+      })
       .catch((error) => res.status(500).send(error))
   })
 
@@ -19,7 +19,7 @@ module.exports = (monitor) => {
     const { gameId, playerId } = req.params
     gameMonitor.on('gameClosed', (id) => {
       if (id === gameId) {
-        Game.findById(gameId, (err, game) => {
+        findById(gameId, (err, game) => {
           if (err) throw err
           const resval = game.players.find((player) => player.id === playerId)
 

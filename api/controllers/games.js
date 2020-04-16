@@ -1,16 +1,14 @@
-const express = require('express')
+import { Router } from 'express'
+import { castPlayers } from '../helpers/castHelper'
+import Game, { findById, findByIdAndUpdate } from '../data/db'
 
-const router = express.Router()
-
-const { castPlayers } = require('../helpers/castHelper')
-
-const Game = require('../data/db')
+const router = Router()
 
 function normalizeName(name) {
   return name.replace(/[ ]/g, '_').toLowerCase()
 }
 
-module.exports = (monitor) => {
+export default (monitor) => {
   const gameMonitor = monitor
 
   gameMonitor.on('newGameStarted', (id) => {
@@ -26,6 +24,7 @@ module.exports = (monitor) => {
       owner: keyName,
       status: 'open',
       players: [],
+      colour: '#',
     })
     newGame.save((error) => {
       if (error) throw error
@@ -43,7 +42,7 @@ module.exports = (monitor) => {
 
   router.route('/:id').get((req, res) => {
     // Get individual player details registered to gameId
-    Game.findById(req.params.id, (err, user) => {
+    findById(req.params.id, (err, user) => {
       if (err) throw err
 
       res.setHeader('Content-Type', 'application/json')
@@ -52,28 +51,29 @@ module.exports = (monitor) => {
   })
 
   router.route('/:id/close').post((req, res) => {
-    Game.findById(req.params.id, (err, game) => {
+    findById(req.params.id, (err, game) => {
       if (err) throw err
       // console.log('Found game server')
-      // if (game.players.length > 7) {
-      const cast = castPlayers(game.players)
+      if (game.players.length > 7) {
+        const cast = castPlayers(game.players)
 
-      if (cast.status === 'passed') {
-        Game.findByIdAndUpdate(
-          req.params.id,
-          { players: cast.cast },
-          { new: true },
-          (err, result) => {
-            if (err) {
-              res.send(err)
-            } else {
-              // console.log('back from update ', result)
-              gameMonitor.emit('gameClosed', req.params.id)
-              res.setHeader('Content-Type', 'application/json')
-              res.send(result)
+        if (cast.status === 'passed') {
+          findByIdAndUpdate(
+            req.params.id,
+            { players: cast.cast },
+            { new: true },
+            (erorr, result) => {
+              if (err) {
+                res.send(erorr)
+              } else {
+                // console.log('back from update ', result)
+                gameMonitor.emit('gameClosed', req.params.id)
+                res.setHeader('Content-Type', 'application/json')
+                res.send(result)
+              }
             }
-          }
-        )
+          )
+        }
       }
     })
   })

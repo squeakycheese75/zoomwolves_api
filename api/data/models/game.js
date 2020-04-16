@@ -1,17 +1,17 @@
-const mongoose = require('mongoose')
+import { Schema, model } from 'mongoose'
 /**
  * Product model schema.
  */
-const playerSchema = new mongoose.Schema({
+const playerSchema = new Schema({
   name: { type: String },
   role: { type: String, default: '' },
 })
 
-const gameSchema = new mongoose.Schema({
+const gameSchema = new Schema({
   owner: { type: String, required: true },
   status: { type: String, required: true },
   players: { type: [playerSchema], default: [] },
   created_at: { type: Date, default: Date.now },
 })
 
-module.exports = mongoose.model('game', gameSchema)
+export default model('game', gameSchema)

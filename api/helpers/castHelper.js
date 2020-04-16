@@ -39,4 +39,4 @@ const castPlayers = (players) => {
   }
 }
 
-module.exports = { castPlayers }
+export default { castPlayers }

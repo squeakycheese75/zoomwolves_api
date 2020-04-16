@@ -1,23 +1,23 @@
-const express = require('express')
+import express from 'express'
 
 require('dotenv').config()
 
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const GameMonitor = require('./GameMonitor')
+import { urlencoded, json } from 'body-parser'
+import cors from 'cors'
+import GameMonitor from './GameMonitor'
 
 const gameMonitor = new GameMonitor()
 const app = express()
 const port = 5000
 
-const playerRoute = require('./api/controllers/players')
+import playerRoute from './api/controllers/players'
 const gamesRoute = require('./api/controllers/games')(gameMonitor)
 const characterRoute = require('./api/controllers/characters')(gameMonitor)
 
 app.use(cors())
-app.use('/', express.static(__dirname))
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json()) // support json encoded bodies
+app.use('/', static(__dirname))
+app.use(urlencoded({ extended: false }))
+app.use(json()) // support json encoded bodies
 
 app.get('/', (req, res) => {
   res.send(
@@ -33,4 +33,4 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-module.exports = app
+export default app

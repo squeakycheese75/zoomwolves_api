@@ -1,25 +1,25 @@
-const mongoose = require('mongoose')
+import { connect, Schema, model } from 'mongoose'
 
 // const gameSchema = require('./models/game')
 
-mongoose.connect(process.env.MONGO_URI, {
+connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 })
 
-const playerSchema = new mongoose.Schema({
+const playerSchema = new Schema({
   name: { type: String },
   role: { type: String, default: '' },
 })
 
-const gameSchema = new mongoose.Schema({
+const gameSchema = new Schema({
   owner: { type: String, required: true },
   status: { type: String, required: true },
   players: { type: [playerSchema], default: [] },
   created_at: { type: Date, default: Date.now },
 })
 
-var Game = mongoose.model(process.env.MONGO_COLLECTION, gameSchema)
+var Game = model(process.env.MONGO_COLLECTION, gameSchema)
 
-module.exports = Game
+export default Game

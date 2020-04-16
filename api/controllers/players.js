@@ -1,21 +1,20 @@
-const express = require('express')
+import { Router } from 'express'
+import { findById } from '../data/db'
 
-const router = express.Router()
-
-const Game = require('../data/db')
+const router = Router()
 
 router.route('/:id').post((req, res) => {
   // Get individual player details registered to gameId
   const clientInfo = req.body
 
-  Game.findById(req.params.id, (err, game) => {
+  findById(req.params.id, (err, game) => {
     if (err) throw err
 
     game.players.push({ name: clientInfo.name })
     game.save((error) => {
       if (error) throw error
 
-      console.log('Added new player', clientInfo.name, ' to game')
+      // console.log('Added new player', clientInfo.name, ' to game')
 
       const player = game.players.find((item) => {
         return item.name === clientInfo.name
@@ -29,4 +28,4 @@ router.route('/:id').post((req, res) => {
   })
 })
 
-module.exports = router
+export default router

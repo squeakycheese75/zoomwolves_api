@@ -1,13 +1,10 @@
-const fsPromises = require('fs').promises
+import { promises as fsPromises } from 'fs'
 
 const dataFile = './api/data/characters.json'
 
 async function loadCharacters() {
-    console.log('In load charactersHelper')
-    const rawData = await fsPromises.readFile('./api/data/characters.json', 'utf8')
-    console.log('rawdata', rawData)
-    return rawData
-    // return JSON.parse(rawData)
+  const rawData = await fsPromises.readFile(dataFile, 'utf8')
+  return rawData
 }
 
-module.exports = { loadCharacters }
+export default { loadCharacters }
