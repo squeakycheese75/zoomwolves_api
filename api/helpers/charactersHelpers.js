@@ -1,3 +1,4 @@
+// import { promises as fsPromises } from 'fs'
 import { promises as fsPromises } from 'fs'
 
 const dataFile = './api/data/characters.json'

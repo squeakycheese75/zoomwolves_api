@@ -1,10 +1,12 @@
-import { Router } from 'express'
-import { findById } from '../data/db'
-import loadCharacters from '../helpers/charactersHelpers'
+const express = require('express')
 
-const router = Router()
+const router = express.Router()
 
-export default (monitor) => {
+const Game = require('../data/db')
+
+const { loadCharacters } = require('../helpers/charactersHelpers')
+
+module.exports = (monitor) => {
   const gameMonitor = monitor
 
   router.route('/').get((req, res) => {
@@ -19,7 +21,7 @@ export default (monitor) => {
     const { gameId, playerId } = req.params
     gameMonitor.on('gameClosed', (id) => {
       if (id === gameId) {
-        findById(gameId, (err, game) => {
+        Game.findById(gameId, (err, game) => {
           if (err) throw err
           const resval = game.players.find((player) => player.id === playerId)
 

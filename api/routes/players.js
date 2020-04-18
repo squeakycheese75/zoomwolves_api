@@ -1,13 +1,14 @@
-import { Router } from 'express'
-import { findById } from '../data/db'
+const express = require('express')
 
-const router = Router()
+const router = express.Router()
+
+const Game = require('../data/db')
 
 router.route('/:id').post((req, res) => {
   // Get individual player details registered to gameId
   const clientInfo = req.body
 
-  findById(req.params.id, (err, game) => {
+  Game.findById(req.params.id, (err, game) => {
     if (err) throw err
 
     game.players.push({ name: clientInfo.name })
@@ -28,4 +29,4 @@ router.route('/:id').post((req, res) => {
   })
 })
 
-export default router
+module.exports = router

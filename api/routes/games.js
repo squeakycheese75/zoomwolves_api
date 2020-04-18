@@ -1,14 +1,16 @@
-import { Router } from 'express'
-import { castPlayers } from '../helpers/castHelper'
-import Game, { findById, findByIdAndUpdate } from '../data/db'
+const express = require('express')
 
-const router = Router()
+const router = express.Router()
+
+const { castPlayers } = require('../helpers/castHelper')
+
+const Game = require('../data/db')
 
 function normalizeName(name) {
   return name.replace(/[ ]/g, '_').toLowerCase()
 }
 
-export default (monitor) => {
+module.exports = (monitor) => {
   const gameMonitor = monitor
 
   gameMonitor.on('newGameStarted', (id) => {
