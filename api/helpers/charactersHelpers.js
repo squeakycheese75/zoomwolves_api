@@ -1,5 +1,5 @@
 // import { promises as fsPromises } from 'fs'
-import { promises as fsPromises } from 'fs'
+const fsPromises = require('fs').promises
 
 const dataFile = './api/data/characters.json'
 
@@ -8,4 +8,4 @@ async function loadCharacters() {
   return rawData
 }
 
-export default { loadCharacters }
+module.exports = { loadCharacters }
