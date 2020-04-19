@@ -19,7 +19,8 @@
     "mocha": "^7.1.1",
     "mongodb-memory-server": "^6.5.2",
     "mongoose": "^5.9.9",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "pm2": "^4.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

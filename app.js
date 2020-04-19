@@ -8,7 +8,7 @@ const GameMonitor = require('./GameMonitor')
 
 const gameMonitor = new GameMonitor()
 const app = express()
-const port = 5000
+const port = process.env.PORT || 3000
 
 const playerRoute = require('./api/routes/players')
 const gamesRoute = require('./api/routes/games')(gameMonitor)

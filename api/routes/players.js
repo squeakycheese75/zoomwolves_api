@@ -20,11 +20,10 @@ router.route('/:id').post((req, res) => {
       const player = game.players.find((item) => {
         return item.name === clientInfo.name
       })
-      // eslint-disable-next-line no-underscore-dangle
-      const playerId = player._id
-      const resval = { id: playerId }
+
       res.setHeader('Content-Type', 'application/json')
-      res.send(resval)
+      // eslint-disable-next-line no-underscore-dangle
+      res.send({ id: player._id })
     })
   })
 })

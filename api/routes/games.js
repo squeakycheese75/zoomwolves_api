@@ -15,7 +15,7 @@ module.exports = (monitor) => {
 
   gameMonitor.on('newGameStarted', (id) => {
     // eslint-disable-next-line no-console
-    console.log('newGameStarted detected', id)
+    console.log('newGameStarted detected', { id })
   })
 
   router.route('/').post((req, res) => {
@@ -26,7 +26,7 @@ module.exports = (monitor) => {
       owner: keyName,
       status: 'open',
       players: [],
-      colour: '#',
+      colour: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
     })
     newGame.save((error) => {
       if (error) throw error
@@ -44,7 +44,7 @@ module.exports = (monitor) => {
 
   router.route('/:id').get((req, res) => {
     // Get individual player details registered to gameId
-    findById(req.params.id, (err, user) => {
+    Game.findById(req.params.id, (err, user) => {
       if (err) throw err
 
       res.setHeader('Content-Type', 'application/json')
@@ -53,14 +53,14 @@ module.exports = (monitor) => {
   })
 
   router.route('/:id/close').post((req, res) => {
-    findById(req.params.id, (err, game) => {
+    Game.findById(req.params.id, (err, game) => {
       if (err) throw err
       // console.log('Found game server')
       if (game.players.length > 7) {
         const cast = castPlayers(game.players)
 
         if (cast.status === 'passed') {
-          findByIdAndUpdate(
+          Game.findByIdAndUpdate(
             req.params.id,
             { players: cast.cast },
             { new: true },
