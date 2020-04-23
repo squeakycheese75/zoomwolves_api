@@ -6,6 +6,7 @@ module.exports = {
     es6: true,
     jest: true,
     node: true,
+    mocha: true,
   },
   rules: {
     'jsx-a11y/href-no-hash': ['off'],

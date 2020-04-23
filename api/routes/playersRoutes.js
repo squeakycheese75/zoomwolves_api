@@ -7,6 +7,7 @@ const Game = require('../data/db')
 router.route('/:id').post((req, res) => {
   // Get individual player details registered to gameId
   const clientInfo = req.body
+  console.log('Received player POST: ', clientInfo.name)
 
   Game.findById(req.params.id, (err, game) => {
     if (err) throw err
@@ -15,7 +16,7 @@ router.route('/:id').post((req, res) => {
     game.save((error) => {
       if (error) throw error
 
-      // console.log('Added new player', clientInfo.name, ' to game')
+      console.log('Added new player', clientInfo.name, ' to db')
 
       const player = game.players.find((item) => {
         return item.name === clientInfo.name
