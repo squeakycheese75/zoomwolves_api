@@ -1,7 +1,4 @@
-// import { connect, Schema, model } from 'mongoose'
 const mongoose = require('mongoose')
-
-// const gameSchema = require('./models/game')
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -21,6 +18,6 @@ const gameSchema = new mongoose.Schema({
   created_at: { type: Date, default: Date.now },
 })
 
-var Game = mongoose.model(process.env.MONGO_COLLECTION, gameSchema)
+const Game = mongoose.model('games', gameSchema)
 
 module.exports = Game

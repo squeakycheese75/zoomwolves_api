@@ -23,14 +23,14 @@ const castPlayers = (players) => {
   const cast = []
   const clonePlayers = [...players]
   // Select key characters
-  fillARole(clonePlayers, cast, 'werewolf')
+  fillARole(clonePlayers, cast, 'Werewolf')
   // fillARole(clonePlayers, cast, 'werewolf')
-  // fillARole(clonePlayers, cast, 'seer')
-  // fillARole(clonePlayers, cast, 'witch')
+  // fillARole(clonePlayers, cast, 'Seer')
+  // fillARole(clonePlayers, cast, 'Witch')
 
   // The rest are villagers
   for (let i = 0; i <= clonePlayers.length; i += 1) {
-    fillARole(clonePlayers, cast, 'villager')
+    fillARole(clonePlayers, cast, 'Villager')
   }
 
   return {

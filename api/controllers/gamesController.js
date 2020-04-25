@@ -2,7 +2,8 @@ const { randomlyPickAColour, normalizeName } = require('../helpers/gameHelpers')
 const { castPlayers } = require('../helpers/castHelper')
 
 function gamesController(monitor, Game) {
-  function post(req, res) {
+  async function post(req, res) {
+    // console.log('POST /api/games/ received.')
     const clientInfo = req.body
     const keyName = normalizeName(clientInfo.name)
 
@@ -23,33 +24,33 @@ function gamesController(monitor, Game) {
     // eslint-disable-next-line no-underscore-dangle
     const newGameId = newGame._id
     const resval = { id: newGameId, keyName, colour }
-    // console.log({ resval })
-    // monitor.emit('newGameStarted', newGameId)
 
-    setTimeout(() => {
-      console.log('In timeout callback')
-      const eventId = `gameClosed${newGameId}`
-      monitor.removeListener(eventId, () => {
-        console.log(
-          'Removing event listener 5 mins after game setup: ',
-          eventId
-        )
-      })
-    }, 5000)
     // Create 5 min timeout to close events..
+    // console.log('POST /api/games/ ', resval, 'response ')
     res.setHeader('Content-Type', 'application/json')
     res.send(resval)
   }
-  function get(req, res) {
-    Game.findById(req.params.id, (err, user) => {
-      if (err) throw err
-
+  async function get(req, res) {
+    // eslint-disable-next-line no-console
+    // console.log('GET /api/games/id', req.params.id, ' received.')
+    Game.findById(req.params.id, (err, registeredGame) => {
+      if (err) {
+        // eslint-disable-next-line no-console
+        console.log('Error retrieving item from database', err)
+        throw err
+      }
+      console.log(
+        'GET /api/games/id ',
+        req.params.id,
+        ' responding ',
+        registeredGame
+      )
       res.setHeader('Content-Type', 'application/json')
-      res.send(user)
+      res.send(registeredGame)
     })
   }
-  function postClose(req, res) {
-    console.log('In POST game close', req.params.id)
+  async function postClose(req, res) {
+    // console.log('In POST game close', req.params.id)
     Game.findById(req.params.id, (err, game) => {
       if (err) throw err
       // if (game.players.length >= 7) {
@@ -64,9 +65,9 @@ function gamesController(monitor, Game) {
             if (err) {
               res.send(erorr)
             } else {
-              console.log('Publishing gameClosed event', req.params.id)
-              const eventId = `gameClosed${req.params.id}`
-              monitor.emit(eventId)
+              // console.log('Publishing gameClosed event', req.params.id)
+              // const eventId = `gameClosed${req.params.id}`
+              // monitor.emit(eventId)
               res.setHeader('Content-Type', 'application/json')
               res.send(result)
             }

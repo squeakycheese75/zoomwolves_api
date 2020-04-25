@@ -1,30 +1,40 @@
-const { loadCharacters } = require('../helpers/charactersHelpers')
+// const { loadCharacters } = require('../helpers/charactersHelpers')
 
-function characterController(monitor, Game) {
-  function get(req, res) {
-    loadCharacters()
+function characterController(monitor, Game, Cast) {
+  async function get(req, res) {
+    Cast.find()
       .then((result) => {
         res.send(result)
       })
       .catch((error) => res.status(500).send(error))
   }
-  function getWithPlayerIdGameId(req, res) {
+  async function getWithPlayerIdGameId(req, res) {
     const { gameId, playerId } = req.params
-    // Console.log()
-    const eventId = `gameClosed${gameId}`
-    monitor.on(eventId, () => {
-      console.log('Registering eventListener: ', eventId)
-      // if (id === gameId) {
-      // console.log('Matched gamedId:', id)
-      Game.findById(gameId, (err, game) => {
-        if (err) throw err
-        const resval = game.players.find((player) => player.id === playerId)
-        monitor.removeListener(eventId, () => {
-          console.log('Removing event listener: ', eventId)
+    Game.findById(gameId, (err, game) => {
+      if (err) throw err
+      const resval = game.players.find((player) => player.id === playerId)
+      let casting = {
+        character: { role: 'pending', desc: '', script: '' },
+        isCast: false,
+      }
+      if (resval && resval.role.length > 0) {
+        Cast.findOne({ role: resval.role }, (err, result) => {
+          if (err) {
+            res.status(500).send(err)
+          }
+          casting = {
+            character: {
+              role: resval.role,
+              desc: result.desc,
+              script: result.script,
+            },
+            isCast: true,
+          }
+          res.send(JSON.stringify(casting))
         })
-
-        res.send(JSON.stringify({ role: resval.role, desc: '' }))
-      })
+      } else {
+        res.send(JSON.stringify(casting))
+      }
     })
   }
   return { get, getWithPlayerIdGameId }
