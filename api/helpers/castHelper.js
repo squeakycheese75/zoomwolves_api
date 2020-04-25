@@ -27,11 +27,15 @@ const castPlayers = (players) => {
   fillARole(clonePlayers, cast, 'Werewolf')
   fillARole(clonePlayers, cast, 'Seer')
   fillARole(clonePlayers, cast, 'Witch')
+  if (players.length > 10) {
+    fillARole(clonePlayers, cast, 'Doctor')
+  }
 
   // The rest are villagers
   for (let i = 0; i <= clonePlayers.length; i += 1) {
     fillARole(clonePlayers, cast, 'Villager')
   }
+  fillARole(clonePlayers, cast, 'Villager')
 
   return {
     status: 'passed',

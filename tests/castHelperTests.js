@@ -52,5 +52,10 @@ it('Test the remaining 3 players are cast in the village role.', () => {
   const castFiltered = resval.cast.filter((el) => {
     return el.role === 'Villager'
   })
-  assert.equal(castFiltered.length, 3)
+  assert.equal(castFiltered.length, 4)
+})
+
+it('Test we cast a role for all 8 player', () => {
+  const resval = castHelper.castPlayers(playersList)
+  assert.equal(resval.cast.length, 8)
 })
