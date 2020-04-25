@@ -8,7 +8,6 @@ router.route('/:id').post(async (req, res) => {
   // Get individual player details registered to gameId
   const clientInfo = req.body
   const gameId = req.params.id
-  // console.log('POST /api/players/:id ', gameId, ' received')
 
   Game.findById(gameId, (err, game) => {
     if (err) throw err
@@ -21,7 +20,6 @@ router.route('/:id').post(async (req, res) => {
         return item.name === clientInfo.name
       })
 
-      console.log('Added new player', clientInfo.name, ' to db')
       res.setHeader('Content-Type', 'application/json')
       // eslint-disable-next-line no-underscore-dangle
       res.send({ id: playerRecord._id })

@@ -14,19 +14,19 @@ const fillARole = (players, cast, role) => {
 }
 
 const castPlayers = (players) => {
-  // if (players.length < 7)
-  //   return {
-  //     status: 'failed',
-  //     cast: [],
-  //   }
+  if (players.length < 7)
+    return {
+      status: 'failed',
+      cast: [],
+    }
 
   const cast = []
   const clonePlayers = [...players]
   // Select key characters
   fillARole(clonePlayers, cast, 'Werewolf')
-  // fillARole(clonePlayers, cast, 'werewolf')
-  // fillARole(clonePlayers, cast, 'Seer')
-  // fillARole(clonePlayers, cast, 'Witch')
+  fillARole(clonePlayers, cast, 'Werewolf')
+  fillARole(clonePlayers, cast, 'Seer')
+  fillARole(clonePlayers, cast, 'Witch')
 
   // The rest are villagers
   for (let i = 0; i <= clonePlayers.length; i += 1) {
@@ -39,5 +39,4 @@ const castPlayers = (players) => {
   }
 }
 
-// export default { castPlayers }
 module.exports = { castPlayers }
