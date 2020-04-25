@@ -26,7 +26,7 @@ it('Test we return a passed result if there are enough players.', () => {
 it('Test that exactly 2 players are cast in the werewolves role', () => {
   const resval = castHelper.castPlayers(playersList)
   const castFiltered = resval.cast.filter((el) => {
-    return el.role === 'werewolf'
+    return el.role === 'Werewolf'
   })
   assert.equal(castFiltered.length, 2)
 })
@@ -34,7 +34,7 @@ it('Test that exactly 2 players are cast in the werewolves role', () => {
 it('Test that exactly 1 player is cast in the seer role.', () => {
   const resval = castHelper.castPlayers(playersList)
   const castFiltered = resval.cast.filter((el) => {
-    return el.role === 'seer'
+    return el.role === 'Seer'
   })
   assert.equal(castFiltered.length, 1)
 })
@@ -42,7 +42,7 @@ it('Test that exactly 1 player is cast in the seer role.', () => {
 it('Test that exactly 1 player is cast in the witch role.', () => {
   const resval = castHelper.castPlayers(playersList)
   const castFiltered = resval.cast.filter((el) => {
-    return el.role === 'witch'
+    return el.role === 'Witch'
   })
   assert.equal(castFiltered.length, 1)
 })
@@ -50,7 +50,12 @@ it('Test that exactly 1 player is cast in the witch role.', () => {
 it('Test the remaining 3 players are cast in the village role.', () => {
   const resval = castHelper.castPlayers(playersList)
   const castFiltered = resval.cast.filter((el) => {
-    return el.role === 'villager'
+    return el.role === 'Villager'
   })
-  assert.equal(castFiltered.length, 3)
+  assert.equal(castFiltered.length, 4)
+})
+
+it('Test we cast a role for all 8 player', () => {
+  const resval = castHelper.castPlayers(playersList)
+  assert.equal(resval.cast.length, 8)
 })

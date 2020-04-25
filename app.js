@@ -8,11 +8,11 @@ const GameMonitor = require('./GameMonitor')
 
 const gameMonitor = new GameMonitor()
 const app = express()
-const port = 5000
+const port = process.env.PORT || 3000
 
-const playerRoute = require('./api/controllers/players')
-const gamesRoute = require('./api/controllers/games')(gameMonitor)
-const characterRoute = require('./api/controllers/characters')(gameMonitor)
+const playerRoute = require('./api/routes/playersRoutes')
+const gamesRoute = require('./api/routes/gamesRoutes')(gameMonitor)
+const characterRoute = require('./api/routes/characterRoutes')(gameMonitor)
 
 app.use(cors())
 app.use('/', express.static(__dirname))
