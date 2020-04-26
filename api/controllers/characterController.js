@@ -1,6 +1,6 @@
 // const { loadCharacters } = require('../helpers/charactersHelpers')
 
-function characterController(monitor, Game, Cast) {
+function characterController(Game, Cast) {
   async function get(req, res) {
     Cast.find()
       .then((result) => {
@@ -18,9 +18,9 @@ function characterController(monitor, Game, Cast) {
         isCast: false,
       }
       if (resval && resval.role.length > 0) {
-        Cast.findOne({ role: resval.role }, (err, result) => {
-          if (err) {
-            res.status(500).send(err)
+        Cast.findOne({ role: resval.role }, (error, result) => {
+          if (error) {
+            res.status(500).send(error)
           }
           casting = {
             character: {

@@ -7,8 +7,8 @@ const Cast = require('../data/dbCast')
 
 const characterController = require('../controllers/characterController')
 
-module.exports = (monitor) => {
-  const controller = characterController(monitor, Game, Cast)
+module.exports = () => {
+  const controller = characterController(Game, Cast)
 
   router.route('/').get(controller.get)
 

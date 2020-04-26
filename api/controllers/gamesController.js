@@ -1,7 +1,7 @@
 const { randomlyPickAColour, normalizeName } = require('../helpers/gameHelpers')
 const { castPlayers } = require('../helpers/castHelper')
 
-function gamesController(monitor, Game) {
+function gamesController(Game) {
   async function post(req, res) {
     const clientInfo = req.body
     const keyName = normalizeName(clientInfo.name)

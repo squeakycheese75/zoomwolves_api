@@ -1,26 +1,23 @@
-// Deprecated
 function playersController(Game) {
-  function post(req, res) {
-    console.log('Received players POST request')
+  async function post(req, res) {
+    // Get individual player details registered to gameId
     const clientInfo = req.body
-    if (!req.body.name) {
-      res.status(400)
-      return res.send('Name is required')
-    }
+    const gameId = req.params.id
 
-    Game.findById(req.params.id, (err, game) => {
+    Game.findById(gameId, (err, game) => {
       if (err) throw err
 
       game.players.push({ name: clientInfo.name })
-      game.save((error) => {
+      game.save((error, gameSaved) => {
         if (error) throw error
 
-        const player = game.players.find((item) => {
+        const playerRecord = gameSaved.players.find((item) => {
           return item.name === clientInfo.name
         })
+
         res.setHeader('Content-Type', 'application/json')
         // eslint-disable-next-line no-underscore-dangle
-        return res.send({ id: player._id })
+        res.send({ id: playerRecord._id })
       })
     })
   }
