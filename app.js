@@ -4,15 +4,13 @@ require('dotenv').config()
 
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const GameMonitor = require('./GameMonitor')
 
-const gameMonitor = new GameMonitor()
 const app = express()
 const port = process.env.PORT || 3000
 
-const playerRoute = require('./api/routes/playersRoutes')(gameMonitor)
-const gamesRoute = require('./api/routes/gamesRoutes')(gameMonitor)
-const characterRoute = require('./api/routes/characterRoutes')(gameMonitor)
+const playerRoute = require('./api/routes/playersRoutes')()
+const gamesRoute = require('./api/routes/gamesRoutes')()
+const characterRoute = require('./api/routes/characterRoutes')()
 
 app.use(cors())
 app.use('/', express.static(__dirname))

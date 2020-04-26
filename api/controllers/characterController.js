@@ -1,6 +1,6 @@
 // const { loadCharacters } = require('../helpers/charactersHelpers')
 
-function characterController(monitor, Game, Cast) {
+function characterController(Game, Cast) {
   async function get(req, res) {
     Cast.find()
       .then((result) => {

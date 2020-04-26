@@ -6,8 +6,8 @@ const Game = require('../data/dbGames')
 
 const playersController = require('../controllers/playersController')
 
-module.exports = (monitor) => {
-  const controller = playersController(monitor, Game)
+module.exports = () => {
+  const controller = playersController(Game)
 
   router.route('/:id').post(controller.post)
 

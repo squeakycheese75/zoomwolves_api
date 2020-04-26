@@ -1,4 +1,4 @@
-function playersController(monitor, Game) {
+function playersController(Game) {
   async function post(req, res) {
     // Get individual player details registered to gameId
     const clientInfo = req.body
