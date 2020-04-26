@@ -1,6 +1,6 @@
-const should = require('should')
-const sinon = require('sinon')
-const playersController = require('../api/controllers/playersController')
+// const should = require('should')
+// const sinon = require('sinon')
+// const playersController = require('../api/controllers/playersController')
 
 // describe('Player Controller Tests', () => {
 //   describe('Post', () => {
