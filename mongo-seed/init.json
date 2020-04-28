@@ -1,0 +1,28 @@
+[
+  {
+    "role": "Villager",
+    "team": "Villagers",
+    "script": ["Stay Alive!", "To defend your village."]
+  },
+  {
+    "role": "Werewolf",
+    "team": "Werewolves",
+    "script": ["Kill all villagers.", "To take over the village."]
+  },
+  {
+    "role": "Seer",
+    "team": "Villagers",
+    "script": ["Stay Alive!", "To find the werewolves."]
+  },
+  {
+    "role": "Doctor",
+    "team": "Villagers",
+    "script": ["Stay Alive", "Heal the innocent."]
+  },
+  {
+    "role": "Witch",
+    "team": "Villagers",
+    "script": ["Stay Alive", "Heal once, Poison once."]
+  },
+  { "role": "Moderator", "team": "Impartial", "script": ["Some scripts"] }
+]

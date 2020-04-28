@@ -1,13 +1,12 @@
-FROM risingstack/alpine:3.4-v6.9.4-4.2.0
+FROM node:lts-alpine3.11
 
-ENV PORT 3001
+ENV PORT 5000
 
-EXPOSE 3001
+EXPOSE 5000
 
 COPY package.json package.json
 RUN npm install
 
 COPY . .
-RUN npm run build
 
-CMD ["node", "dist/"]
+CMD ["node", "app.js"]
