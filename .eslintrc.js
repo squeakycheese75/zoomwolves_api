@@ -1,16 +1,14 @@
 module.exports = {
-  extends: ['airbnb', 'plugin:prettier/recommended', 'prettier/react'],
+  extends: ['airbnb-base', 'prettier'],
   env: {
     browser: true,
     commonjs: true,
-    es6: true,
+    es6: false,
     jest: true,
     node: true,
     mocha: true,
   },
   rules: {
-    'jsx-a11y/href-no-hash': ['off'],
-    'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
     'max-len': [
       'warn',
       {

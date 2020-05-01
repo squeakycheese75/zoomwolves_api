@@ -1,6 +1,6 @@
 # Zoomwolves - back-end api
 
-An online version of the classic social deduction game Werewolves using Node. Built to support playing the game via a conferencing tool like zoom.
+An online version of the classic social deduction game Werewolves. Built to support playing the game via a conferencing tool like zoom or jitsi.
 
 ## Add a .env file
 
