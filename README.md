@@ -1,6 +1,15 @@
 # Zoomwolves API
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=alert_status)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=bugs)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=code_smells)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=coverage)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=security_rating)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=sqale_index)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
 
 An online version of the classic social deduction game Werewolves. Built to support playing the game via a conferencing tool like zoom or jitsi.
 
