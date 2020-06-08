@@ -10,6 +10,7 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=security_rating)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=sqale_index)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=squeakycheese75_zoomwolves_api&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=squeakycheese75_zoomwolves_api)
+[![CircleCI](https://circleci.com/gh/squeakycheese75/zoomwolves_api/tree/circleci-project-setup.svg?style=svg)](https://circleci.com/gh/squeakycheese75/zoomwolves_api/tree/circleci-project-setup)
 
 An online version of the classic social deduction game Werewolves. Built to support playing the game via a conferencing tool like zoom or jitsi.
 
