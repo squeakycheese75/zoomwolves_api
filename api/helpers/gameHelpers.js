@@ -2,4 +2,8 @@ function normalizeName(name) {
   return name.replace(/[ ]/g, '_').toLowerCase()
 }
 
-module.exports = { normalizeName }
+function randomlyPickAColour(){
+  return 'Red'
+}
+
+module.exports = { normalizeName, randomlyPickAColour }

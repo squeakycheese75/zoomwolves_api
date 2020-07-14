@@ -3,9 +3,10 @@ const { castPlayers } = require('../helpers/castHelper')
 
 function gamesController(Game) {
   async function post(req, res) {
-    const clientInfo = req.body
-    const keyName = normalizeName(clientInfo.name)
-
+    // const clientInfo = req.body
+    // const keyName = normalizeName(clientInfo.name || 'Barry')  
+    const keyName = normalizeName('barry')
+    
     const newGame = Game({
       owner: keyName,
       status: 'open',
